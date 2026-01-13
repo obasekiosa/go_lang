@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"os"
 	"strings"
 )
@@ -15,8 +16,8 @@ func main() {
 }
 
 func count() int {
-	// count, _ := countWordsStream()
-	count, _ := countWordsStreamNative()
+	// count, _ := countWordsStream(os.Stdin)
+	count, _ := countWordsStreamNative(os.Stdin)
 	return count
 }
 
@@ -24,8 +25,8 @@ func count() int {
 // we could get the input in a stream of tokens. and count as they come or
 // we could get it all in a buffer.
 
-func countWordsStream() (int, error) {
-	input := bufio.NewScanner(os.Stdin)
+func countWordsStream(reader io.Reader) (int, error) {
+	input := bufio.NewScanner(reader)
 	count := 0
 	for input.Scan() {
 		full_token := input.Text()
@@ -41,8 +42,8 @@ func countWordsStream() (int, error) {
 	return count, nil
 }
 
-func countWordsStreamNative() (int, error) {
-	scanner := bufio.NewScanner(os.Stdin)
+func countWordsStreamNative(reader io.Reader) (int, error) {
+	scanner := bufio.NewScanner(reader)
 	scanner.Split(bufio.ScanWords)
 	scanner.Buffer(make([]byte, 1024), 1024)
 
