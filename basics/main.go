@@ -13,4 +13,8 @@ func main() {
 	callSwap()
 	arrays()
 	maps()
+	displayUserGreeting()
+	doIncrement()
+	displayHouse()
+	runDoWorks()
 }
