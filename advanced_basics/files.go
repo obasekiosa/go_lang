@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"io"
 	"os"
@@ -20,7 +21,7 @@ func readFile() {
 	io.Copy(&content, file)
 
 	for line := range strings.Lines(content.String()) {
-		fmt.Printf(" -> %s\n", line)
+		fmt.Printf(" -> %s", line)
 	}
 }
 
@@ -33,9 +34,10 @@ func createFile() {
 	}
 	defer file.Close()
 
-	var content strings.Builder
+	w := bufio.NewWriter(file)
+	defer w.Flush()
 	for i := 0; i < 26; i++ {
-		content.WriteRune(rune(65 + (i % 26)))
+		w.WriteRune(rune(65 + (i % 26)))
 	}
-	file.WriteString(content.String())
+	w.WriteString("\n")
 }
