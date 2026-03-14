@@ -104,6 +104,13 @@ func playOdd() {
 	}
 }
 
+func init() {
+	fmt.Println("init2")
+}
+func init() {
+	fmt.Println("init1")
+}
+
 func main() {
 	// playAndSeeFunc()
 	// playWithVariadic()
