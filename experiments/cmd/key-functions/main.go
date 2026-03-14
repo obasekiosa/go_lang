@@ -33,7 +33,7 @@ var funcs [4]func(int, int) int = [4]func(int, int) int{add, minus, mod, mult}
 func playAndSeeFunc() {
 	a, b := 10, 3
 	for i, f := range funcs {
-		fmt.Println("Index: ", i, "Name: ", f, "Output: ", f(a, b))
+		fmt.Println("Index: ", i, "Name: ", any(f), "Output: ", f(a, b))
 	}
 	fmt.Println("Output: ", funcs)
 }
